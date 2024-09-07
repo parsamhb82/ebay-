@@ -9,6 +9,7 @@ class Post(models.Model):
     seller = models.ForeignKey(Customer, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    is_done = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
