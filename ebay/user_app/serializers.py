@@ -17,3 +17,16 @@ class CustomerRegisterSerializer(serializers.ModelSerializer):
                                         email=validated_data['email'], 
                                         first_name=validated_data['first_name'], 
                                         last_name=validated_data['last_name'])
+
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = ['user', 'phone', 'address', 'city']
+        read_only_fields = ['user']  # You may want to prevent updates to the user field
+
+    def update(self, instance, validated_data):
+        instance.phone = validated_data.get('phone', instance.phone)
+        instance.address = validated_data.get('address', instance.address)
+        instance.city = validated_data.get('city', instance.city)
+        instance.save()
+        return instance
