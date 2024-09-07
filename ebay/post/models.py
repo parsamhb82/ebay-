@@ -10,10 +10,16 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Message(models.Model):
     sender = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='sent_messages')
@@ -21,3 +27,6 @@ class Message(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"{self.post.title} from {self.sender.user.get_full_name()} "

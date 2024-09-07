@@ -5,7 +5,9 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10)
     address = models.TextField()
-    city = models.CharField(max_length=255) 
+    city = models.CharField(max_length=255)
+    def __str__(self) -> str:
+        return self.user.get_full_name()
 
 
       

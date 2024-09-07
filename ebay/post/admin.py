@@ -1,3 +1,21 @@
-from django.contrib import admin
+from django.contrib.admin import register, ModelAdmin
+from .models import * 
 
-# Register your models here.
+@register(Post)
+class PostAdmin(ModelAdmin):
+    search_fields = [
+        'title',
+        'price',
+    ]
+
+@register(Category)
+class CategoryAdmin(ModelAdmin):
+    search_fields = [
+        'name'
+    ]
+
+@register(Message)
+class MessageAdmin(ModelAdmin):
+    search_fields = [
+        'timestamp'
+    ]
