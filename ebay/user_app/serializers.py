@@ -21,8 +21,7 @@ class CustomerRegisterSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ['user', 'phone', 'address', 'city']
-        read_only_fields = ['user']  # You may want to prevent updates to the user field
+        fields = ['phone', 'address', 'city'] 
 
     def update(self, instance, validated_data):
         instance.phone = validated_data.get('phone', instance.phone)
