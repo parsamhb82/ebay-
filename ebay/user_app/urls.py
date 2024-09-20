@@ -14,6 +14,7 @@ urlpatterns = [
     path('customer/', CustomerDetailView.as_view()),#check
     path('update/<int:pk>', UpdateUserView.as_view()),#check
     path('retrieve/<int:pk>', RetrieveUserView.as_view()),#check
+    path('customer/<int:pk>', CustomerDetailView.as_view())
 
 
 ]
